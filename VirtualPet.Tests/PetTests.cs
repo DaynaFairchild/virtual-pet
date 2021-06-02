@@ -21,20 +21,20 @@ namespace VirtualPet.Tests
         // INSTRUCTIONS:
         // Uncomment code in the test body one test at a time
         // Add source code to eliminate the build errors (red squiggle) and pass the test
-        
+
         [Fact]
         public void Pet_Should_Have_Name()
         {
-            testPet.Name = "Pet Name"; 
-            
-             Assert.Equal("Pet Name", testPet.Name);
+            testPet.Name = "Pet Name";
+
+            Assert.Equal("Pet Name", testPet.Name);
         }
 
         [Fact]
         public void SetName_Should_Assign_Pet_Name_Property()
         {
-            testPet.SetName("Fluffy"); 
-          
+            testPet.SetName("Fluffy");
+
             Assert.Equal("Fluffy", testPet.Name);
         }
 
@@ -51,75 +51,75 @@ namespace VirtualPet.Tests
         [Fact]
         public void Pet_Should_Have_Species()
         {
-             testPet.Species = "Pet Species";
-            
-             Assert.Equal("Pet Species", testPet.Species);
+            testPet.Species = "Pet Species";
+
+            Assert.Equal("Pet Species", testPet.Species);
         }
 
         [Fact]
         public void SetSpecies_Should_Assign_Pet_Species_Property()
         {
-             testPet.SetSpecies("Cat");
+            testPet.SetSpecies("Cat");
 
-             Assert.Equal("Cat", testPet.Species);
+            Assert.Equal("Cat", testPet.Species);
         }
 
         [Fact]
         public void GetSpecies_Should_Get_Pet_Species_Value()
         {
-             testPet.SetSpecies("Dog");
+            testPet.SetSpecies("Dog");
 
-             string testPetSpecies = testPet.GetSpecies();
+            string testPetSpecies = testPet.GetSpecies();
 
-             Assert.Equal("Dog", testPetSpecies);
+            Assert.Equal("Dog", testPetSpecies);
         }
 
         [Fact]
         public void Pet_Should_Have_Hunger()
         {
-             testPet.Hunger = 100;
-            
-             Assert.Equal(100, testPet.Hunger);
+            testPet.Hunger = 100;
+
+            Assert.Equal(100, testPet.Hunger);
         }
 
         [Fact]
         public void GetHunger_Should_Return_Initial_Hunger_Level_Of_50()
         {
-             int testPetHunger = testPet.GetHunger();
+            int testPetHunger = testPet.GetHunger();
 
-             Assert.Equal(50, testPetHunger);
+            Assert.Equal(50, testPetHunger);
         }
 
         [Fact]
         public void Pet_Should_Have_Boredom()
         {
-             testPet.Boredom = 100;
-            
-             Assert.Equal(100, testPet.Boredom);
+            testPet.Boredom = 100;
+
+            Assert.Equal(100, testPet.Boredom);
         }
 
         [Fact]
         public void GetBoredom_Should_Return_Initial_Boredom_Level_Of_60()
         {
-             int testPetBoredom = testPet.GetBoredom();
+            int testPetBoredom = testPet.GetBoredom();
 
-             Assert.Equal(60, testPetBoredom);
+            Assert.Equal(60, testPetBoredom);
         }
 
         [Fact]
         public void Pet_Should_Have_Health()
         {
-             testPet.Health = 100; 
-           
-             Assert.Equal(100, testPet.Health);
+            testPet.Health = 100;
+
+            Assert.Equal(100, testPet.Health);
         }
 
         [Fact]
         public void GetHealth_Should_Return_Initial_Health_Level_Of_30()
         {
-             int testPetHealth = testPet.GetHealth();
-            
-             Assert.Equal(30, testPetHealth);
+            int testPetHealth = testPet.GetHealth();
+
+            Assert.Equal(30, testPetHealth);
         }
 
         [Fact]

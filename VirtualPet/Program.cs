@@ -27,7 +27,13 @@ namespace VirtualPet
                 switch (userChoice)
                 {
                     case "1":
-
+                        int initialHunger = userPet.Hunger;
+                        userPet.Feed();
+                        Console.Clear();
+                        Console.WriteLine($"You fed {userPet.Name}. Yum, yum, yum!");
+                        Console.WriteLine($"Hunger went from {initialHunger} to {userPet.Hunger}. (Press any key to continue.)");
+                        Console.ReadKey();
+                        break;
                     case "2":
                     case "3":
                     case "4":
@@ -37,6 +43,7 @@ namespace VirtualPet
                         break;
 
                 }
+                userPet.Tick();
             }
 
         }
