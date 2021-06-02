@@ -12,11 +12,28 @@ namespace VirtualPet
         public int Boredom { get; set; }
         public int Health { get; set; }
 
+
         public Pet()
         {
             Hunger = 50;
             Health = 30;
             Boredom = 60;
+        }
+        public void SetName (string name)
+        {
+            Name = name;
+        }
+        public string GetName()
+        {
+            return Name;
+        }
+        public void SetSpecies (string species)
+        {
+            Species = species;
+        }
+        public string GetSpecies()
+        {
+            return Species;
         }
 
         public int GetHunger()
