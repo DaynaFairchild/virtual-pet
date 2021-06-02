@@ -12,26 +12,48 @@ namespace VirtualPet
         public int Boredom { get; set; }
         public int Health { get; set; }
 
-        public int GetHunger()
+        public Pet()
         {
             Hunger = 50;
+            Health = 30;
+            Boredom = 60;
+        }
+
+        public int GetHunger()
+        {
             return Hunger;
         }
         public int GetBoredom()
         {
-            Boredom = 60;
             return Boredom;
         }
         public int GetHealth()
         {
-            Health = 30;
             return Health;
         }
 
+        public void Feed()
+        {
+            Hunger -= 40;
+        }
 
+        public void SeeDoctor()
+        {
+            Health += 30;
+        }
 
+        public void Play()
+        {
+            Hunger += 10;
+            Boredom -= 20;
+            Health += 10;
+        }
 
-
-
+        public void Tick()
+        {
+            Hunger += 5;
+            Boredom += 5;
+            Health -= 5;
+        }
     }
 }
