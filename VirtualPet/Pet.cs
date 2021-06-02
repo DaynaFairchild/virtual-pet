@@ -66,21 +66,75 @@ namespace VirtualPet
 
         public void SeeDoctor()
         {
-            Health += 30;
+            if (Health >= 70)
+            {
+                Health = 100;
+            }
+            else
+            {
+                Health += 30;
+            }
         }
 
         public void Play()
         {
-            Hunger += 10;
-            Boredom -= 20;
-            Health += 10;
+            if (Hunger > 90)
+            {
+                Hunger = 100;
+            }
+            else
+            {
+                Hunger += 10;
+            }
+            if (Health > 90)
+            {
+                Health = 100;
+            }
+            else
+            {
+                Health += 10;
+            }
+
+            if (Boredom < 20)
+            {
+                Boredom = 0;
+                Console.WriteLine($"{Name} is having OODLES of fun!!");
+            }
+            else
+            {
+                Boredom -= 20;
+                Console.WriteLine($"Good times! {Name} is enjoying playing with you!");
+            }
         }
 
         public void Tick()
         {
-            Hunger += 5;
-            Boredom += 5;
-            Health -= 5;
+            if (Hunger > 95)
+            {
+                Hunger = 100;
+            }
+            else
+            {
+                Hunger += 5;
+            }
+            if (Boredom > 95)
+            {
+                Boredom = 100;
+                Console.WriteLine($"{Name} passed out from sheer boredom!");
+            }
+            else
+            {
+                Boredom += 5;
+            }
+
+            if (Health < 5)
+            {
+                Health = 0;
+            }
+            else
+            {
+                Health -= 5;
+            }
         }
     }
 }

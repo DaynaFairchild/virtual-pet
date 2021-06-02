@@ -13,6 +13,26 @@ namespace VirtualPet
             bool keepPlaying = true;
             while (keepPlaying)
             {
+                if (userPet.Health == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine($"WOW, {userPet.Name}'s Health Reached 0, your {userPet.Species} has been seized by Animal Protective League!");
+                    Console.WriteLine("Would you like to play again? y/n");
+                    string playAgain = Console.ReadLine().ToLower();
+                    if (playAgain == "y")
+                    {
+                        Console.Clear();
+                        userPet = new Pet();
+
+                        Intro(userPet);
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Thanks for playing.");
+                        break;
+                    }
+                }
                 Console.Clear();
                 Console.WriteLine($"Hunger: {userPet.Hunger} | Boredom: {userPet.Boredom} | Health: {userPet.Health}\n");
                 Console.WriteLine($"What would you like to do with {userPet.Name}?");
@@ -34,7 +54,9 @@ namespace VirtualPet
                         continueKey();
                         break;
                     case "2":
+                        Console.Clear();
                         userPet.Play();
+                        continueKey();
                         Console.Clear();
                         Console.WriteLine($"Hunger: {userPet.Hunger} | Boredom: {userPet.Boredom} | Health: {userPet.Health}\n");
                         Console.WriteLine($"You played a game with {userPet.Name}. Hooray!");
@@ -51,6 +73,7 @@ namespace VirtualPet
                         break;
                     case "4":
                         Console.WriteLine($"Thanks for playing! {userPet.Name} has enjoyed your company!");
+                        keepPlaying = false;
                         break;
                     default:
                         Console.WriteLine("Please choose from options 1-4. Press any key to be able to choose again.");
@@ -87,5 +110,6 @@ namespace VirtualPet
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
         }
+
     }
 }
