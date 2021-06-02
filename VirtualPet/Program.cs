@@ -10,14 +10,12 @@ namespace VirtualPet
 
             Intro(userPet);
 
-           
-
             bool keepPlaying = true;
             while (keepPlaying)
             {
                 Console.Clear();
-                Console.WriteLine($"Hunger: {userPet.Hunger} | Boredom: {userPet.Boredom} | Health: {userPet.Health}");
-                Console.WriteLine($"\n What would you like to do with {userPet.Name}?");
+                Console.WriteLine($"Hunger: {userPet.Hunger} | Boredom: {userPet.Boredom} | Health: {userPet.Health}\n");
+                Console.WriteLine($"What would you like to do with {userPet.Name}?");
                 Console.WriteLine($"1. Feed {userPet.Name}");
                 Console.WriteLine($"2. Play with {userPet.Name}");
                 Console.WriteLine($"3. Take {userPet.Name} to the vet :(");
@@ -27,16 +25,33 @@ namespace VirtualPet
                 switch (userChoice)
                 {
                     case "1":
-                        int initialHunger = userPet.Hunger;
-                        userPet.Feed();
                         Console.Clear();
-                        Console.WriteLine($"You fed {userPet.Name}. Yum, yum, yum!");
-                        Console.WriteLine($"Hunger went from {initialHunger} to {userPet.Hunger}. (Press any key to continue.)");
-                        Console.ReadKey();
+                        userPet.Feed();
+                        continueKey();
+                        Console.Clear();
+                        Console.WriteLine($"Hunger: {userPet.Hunger} | Boredom: {userPet.Boredom} | Health: {userPet.Health}\n");
+                        Console.WriteLine($"{userPet.Name}'s Hunger decreased to {userPet.Hunger}.");
+                        continueKey();
                         break;
                     case "2":
+                        userPet.Play();
+                        Console.Clear();
+                        Console.WriteLine($"Hunger: {userPet.Hunger} | Boredom: {userPet.Boredom} | Health: {userPet.Health}\n");
+                        Console.WriteLine($"You played a game with {userPet.Name}. Hooray!");
+                        Console.WriteLine($"{userPet.Name}'s Boredom decresed to {userPet.Boredom}, Hunger increased to {userPet.Hunger}, and Health increased to {userPet.Health}.");
+                        continueKey();
+                        break;
                     case "3":
+                        userPet.SeeDoctor();
+                        Console.Clear();
+                        Console.WriteLine($"Hunger: {userPet.Hunger} | Boredom: {userPet.Boredom} | Health: {userPet.Health}\n");
+                        Console.WriteLine($"You took {userPet.Name} for a checkup at the vet.");
+                        Console.WriteLine($"{userPet.Name}'s Health increased to {userPet.Health}.");
+                        continueKey();
+                        break;
                     case "4":
+                        Console.WriteLine($"Thanks for playing! {userPet.Name} has enjoyed your company!");
+                        break;
                     default:
                         Console.WriteLine("Please choose from options 1-4. Press any key to be able to choose again.");
                         Console.ReadKey();
@@ -50,7 +65,7 @@ namespace VirtualPet
 
         public static  void Intro(Pet petToChange)
         {
-            Console.WriteLine("Hello! Welcome to Virtual Pets");
+            Console.WriteLine("Hello! Welcome to Virtual Pets\n");
 
             Console.WriteLine("What species would you like your pet to be?"); 
             string species = Console.ReadLine();
@@ -58,9 +73,18 @@ namespace VirtualPet
             Console.WriteLine($"What would you like to name your {species}?");
             string name = Console.ReadLine();
             petToChange.SetName(name);
-            Console.WriteLine($"Your {species}'s name is {name}!");
+            Console.Clear();
+            Console.WriteLine($"Your {species}'s name is {name}!\n");
             Console.WriteLine($"Like any pet, {name} needs your love and attention.");
-            Console.WriteLine("Press any key to begin your new friendship.");
+            Console.WriteLine($"The passage of time (each time you return to the menu) will affect {name}'s stats.");
+            Console.WriteLine($"You will need to interact with and care for {name} to keep them happy and healthy.\n");
+            Console.WriteLine($"Press any key to begin your new friendship with your adopted {species}.");
+            Console.ReadKey();
+        }
+
+        public static void continueKey()
+        {
+            Console.WriteLine("Press any key to continue.");
             Console.ReadKey();
         }
     }

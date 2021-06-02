@@ -51,7 +51,17 @@ namespace VirtualPet
 
         public void Feed()
         {
-            Hunger -= 40;
+            if (Hunger < 40)
+            {
+                Hunger = 0;
+                Health -= 10;
+                Console.WriteLine($"You've overfed {Name} and your poor {Species} isn't feeling so well. (Health has decresed to {Health}.)");
+            }
+            else
+            {
+                Hunger -= 40;
+                Console.WriteLine($"You fed {Name}. Yum, yum, yum!");
+            }
         }
 
         public void SeeDoctor()
