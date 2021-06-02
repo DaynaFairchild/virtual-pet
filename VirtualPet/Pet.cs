@@ -14,7 +14,24 @@ namespace VirtualPet
 
         public int GetHunger()
         {
+            Hunger = 50;
             return Hunger;
         }
+        public int GetBoredom()
+        {
+            Boredom = 60;
+            return Boredom;
+        }
+        public int GetHealth()
+        {
+            Health = 30;
+            return Health;
+        }
+
+
+
+
+
+
     }
 }
