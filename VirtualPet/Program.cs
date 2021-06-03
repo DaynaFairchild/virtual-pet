@@ -1,14 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace VirtualPet
 {
     class Program
     {
+        public static Shelter petzForDayz = new Shelter();
         static void Main(string[] args)
         {
-            Pet userPet = new Pet(); 
-
-            Intro(userPet);
+            
+            Pet Fluffy = new Pet("Fluffy","Alligator");
+            Pet Spot = new Pet("Spot", "Zebra");
+            Pet Brew = new Pet("Brew", "Hippogriff");
+            petzForDayz.AddPet(Fluffy);
+            petzForDayz.AddPet(Spot);
+            petzForDayz.AddPet(Brew);
 
             bool keepPlaying = true;
             while (keepPlaying)
@@ -24,7 +30,7 @@ namespace VirtualPet
                         Console.Clear();
                         userPet = new Pet();
 
-                        Intro(userPet);
+                        AddNewPetIntro(userPet);
                     }
                     else
                     {
@@ -86,10 +92,26 @@ namespace VirtualPet
 
         }
 
-        public static  void Intro(Pet petToChange)
+        public static void StartingIntro(Pet petToChange)
         {
-            Console.WriteLine("Hello! Welcome to Virtual Pets\n");
-
+            Console.WriteLine("Hello! Welcome to Petz 4 Dayz Shelter!\n");
+            Console.WriteLine("Thank you for volunteering with us today.\n");
+            Console.WriteLine("Below is a list of animals currently sheltered.");
+            foreach(Pet pet in petzForDayz.petList)
+            {
+                Console.WriteLine($"{pet.Name} ({pet.Species}) | Hunger: {pet.Hunger} | Boredom: {pet.Boredom} | Health: {pet.Health}");
+            }
+            //Console.Clear();
+            //Console.WriteLine($"Your {species}'s name is {name}!\n");
+            //Console.WriteLine($"Like any pet, {name} needs your love and attention.");
+            //Console.WriteLine($"The passage of time (each time you return to the menu) will affect {name}'s stats.");
+            //Console.WriteLine($"You will need to interact with and care for {name} to keep them happy and healthy.\n");
+            //Console.WriteLine($"Press any key to begin your new friendship with your adopted {species}.");
+            //Console.ReadKey();
+        }
+        public static  void AddNewPetIntro(Pet petToChange)
+        {
+            //Console.WriteLine("Hello! Welcome to Virtual Pets\n");
             Console.WriteLine("What species would you like your pet to be?"); 
             string species = Console.ReadLine();
             petToChange.SetSpecies(species);

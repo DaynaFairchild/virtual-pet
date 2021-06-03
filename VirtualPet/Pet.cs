@@ -19,6 +19,15 @@ namespace VirtualPet
             Health = 30;
             Boredom = 60;
         }
+        public Pet(string name, string species)
+        {
+            Random rand = new Random();
+            Name = name;
+            Species = species;
+            Hunger = rand.Next(40,60);
+            Health = rand.Next(20,40);
+            Boredom = rand.Next(50,70);
+        }
         public void SetName (string name)
         {
             Name = name;
