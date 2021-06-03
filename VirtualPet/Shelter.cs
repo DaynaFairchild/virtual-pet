@@ -17,11 +17,20 @@ namespace VirtualPet
 
         }
 
-        public int GetPetCount(petList)
+        public int GetPetCount()
         {
             return petList.Count;
         }
-    
+
+        public void AddPet(Pet petToAdd)
+        {
+            petList.Add(petToAdd);
+        }
+
+        public void RemovePet(Pet petToRemove)
+        {
+            petList.Remove(petToRemove);
+        }
 
 
     }
