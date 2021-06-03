@@ -16,6 +16,8 @@ namespace VirtualPet
             petzForDayz.AddPet(Spot);
             petzForDayz.AddPet(Brew);
 
+            StartingIntro();
+
             bool keepPlaying = true;
             while (keepPlaying)
             {
@@ -92,32 +94,34 @@ namespace VirtualPet
 
         }
 
-        public static void StartingIntro(Pet petToChange)
+        public static void StartingIntro()
         {
             Console.WriteLine("Hello! Welcome to Petz 4 Dayz Shelter!\n");
             Console.WriteLine("Thank you for volunteering with us today.\n");
-            Console.WriteLine("Below is a list of animals currently sheltered.");
+            Console.WriteLine("Below is a list of animals currently sheltered.\n");
             foreach(Pet pet in petzForDayz.petList)
             {
-                Console.WriteLine($"{pet.Name} ({pet.Species}) | Hunger: {pet.Hunger} | Boredom: {pet.Boredom} | Health: {pet.Health}");
+                Console.WriteLine($"{pet.Name} ({pet.Species})\n    Hunger: {pet.Hunger} | Boredom: {pet.Boredom} | Health: {pet.Health}\n");
             }
+            
             //Console.Clear();
             //Console.WriteLine($"Your {species}'s name is {name}!\n");
             //Console.WriteLine($"Like any pet, {name} needs your love and attention.");
             //Console.WriteLine($"The passage of time (each time you return to the menu) will affect {name}'s stats.");
             //Console.WriteLine($"You will need to interact with and care for {name} to keep them happy and healthy.\n");
-            //Console.WriteLine($"Press any key to begin your new friendship with your adopted {species}.");
-            //Console.ReadKey();
+            Console.WriteLine("Press any key to begin your new friendships!");
+            Console.ReadKey();
         }
-        public static  void AddNewPetIntro(Pet petToChange)
+        public static  void AddNewPet()
         {
             //Console.WriteLine("Hello! Welcome to Virtual Pets\n");
-            Console.WriteLine("What species would you like your pet to be?"); 
+            Console.WriteLine("What species is this pet?"); 
             string species = Console.ReadLine();
-            petToChange.SetSpecies(species);
-            Console.WriteLine($"What would you like to name your {species}?");
+            
+            Console.WriteLine($"What is the name of this {species}?");
             string name = Console.ReadLine();
-            petToChange.SetName(name);
+            Pet newPet = new Pet(name, species);
+            petzForDayz.AddPet(newPet);
             Console.Clear();
             Console.WriteLine($"Your {species}'s name is {name}!\n");
             Console.WriteLine($"Like any pet, {name} needs your love and attention.");
@@ -126,6 +130,10 @@ namespace VirtualPet
             Console.WriteLine($"Press any key to begin your new friendship with your adopted {species}.");
             Console.ReadKey();
         }
+        public static void RemovePet()
+        {
+
+        }
 
         public static void continueKey()
         {
@@ -133,5 +141,33 @@ namespace VirtualPet
             Console.ReadKey();
         }
 
+        public static void mainMenu()
+        {
+            Console.WriteLine("\nWhat would you like to do?\n");
+            Console.WriteLine("1. Take in a pet");
+            Console.WriteLine("2. Adopt a pet");
+            Console.WriteLine("3. Interact with an individual pet");
+            Console.WriteLine("4. Interact with all pets");
+            Console.WriteLine("5. Quit");
+            string menuChoice = Console.ReadLine();
+            switch (menuChoice)
+            {
+                case "1": 
+                    AddNewPet();
+                    break;
+                case "2":
+
+                case "3":
+                case "4":
+                case "5":
+                default:
+                    Console.WriteLine("Please choose from options 1-5. Press any key to be able to choose again.");
+                    Console.ReadKey();
+                    break;
+
+            }
+           
+        }
+       
     }
 }
