@@ -15,7 +15,7 @@ namespace VirtualPet.Tests
         {
             testShelter = new Shelter();
         }
-        //Added tests...
+
         [Fact]
         public void Shelter_Constructor_Should_Instantiate_Shelter_Object()
         {
@@ -42,14 +42,11 @@ namespace VirtualPet.Tests
         [Fact]
         public void RemovePet_Should_Decrease_Pet_Count_By_One()
         {
-            // Arrange
             Pet testPet = new Pet();
             testShelter.AddPet(testPet);
 
-            // Act
             testShelter.RemovePet(testPet);
 
-            // Assert
             Assert.Equal(0, testShelter.GetPetCount());
         }
 

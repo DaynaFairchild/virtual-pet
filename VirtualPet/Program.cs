@@ -55,7 +55,7 @@ namespace VirtualPet
                 Console.WriteLine("1. Take in a new pet");
                 Console.WriteLine("2. Adopt a pet to a good home");
                 Console.WriteLine("3. Interact with an individual pet");
-                Console.WriteLine("4. Choose three pets to interact with: ");
+                Console.WriteLine("4. Choose up to three pets to interact with");
                 Console.WriteLine("5. Quit");
                 string menuChoice = Console.ReadLine();
                 switch (menuChoice)
@@ -129,35 +129,27 @@ namespace VirtualPet
 
         public static void GroupInteraction()
         {
-            Pet userPet = petzForDayz.ChoosePet();
-            Pet userPetTwo = petzForDayz.ChoosePet();
-            Pet userPetThree = petzForDayz.ChoosePet();
-            List<Pet> GroupList = new List<Pet> { userPet, userPetTwo, userPetThree };
-           
-
-            bool oneIsDead = false;
-            bool twoIsDead = false;
-            bool threeIsDead = false;
+            List<Pet> GroupList = new List<Pet>();
+            for (int i =0; i < ((petzForDayz.petList.Count < 3) ? petzForDayz.petList.Count : 3); i++)
+            {
+                Pet userPet = petzForDayz.ChoosePet();
+                GroupList.Add(userPet);
+            }
 
             bool keepPlaying = true;
             while (keepPlaying)
             {
-                if (!oneIsDead && userPet.Health == 0) 
-                { 
-                    ZeroHealth(userPet);
-                    oneIsDead = true; 
-                }
-                if (!twoIsDead && userPetTwo.Health == 0)
+                int deadCount = 0;
+                foreach(var pet in GroupList)
                 {
-                    ZeroHealth(userPetTwo);
-                    twoIsDead = true;
+                    if(pet.Health == 0)
+                    {
+                        ZeroHealth(pet);
+                        deadCount++;
+                    }
                 }
-                if (!threeIsDead && userPetThree.Health == 0)
-                {
-                    ZeroHealth(userPetThree);
-                    threeIsDead = true;
-                }
-                if (oneIsDead && twoIsDead && threeIsDead)
+
+                if (deadCount == GroupList.Count)
                 {
                     break;
                 }
@@ -184,23 +176,26 @@ namespace VirtualPet
                 {
                     case "1":
                         Console.Clear();
-                        userPet.Feed();
-                        userPetTwo.Feed();
-                        userPetThree.Feed();
+                        foreach(var pet in GroupList)
+                        {
+                            pet.Feed();
+                        }
                         continueKey();
                         break;
                     case "2":
                         Console.Clear();
-                        userPet.Play();
-                        userPetTwo.Play();
-                        userPetThree.Play();
+                        foreach (var pet in GroupList)
+                        {
+                            pet.Play();
+                        }
                         continueKey();
                         break;
                     case "3":
                         Console.Clear();
-                        userPet.SeeDoctor();
-                        userPetTwo.SeeDoctor();
-                        userPetThree.SeeDoctor();
+                        foreach (var pet in GroupList)
+                        {
+                            pet.SeeDoctor();
+                        }
                         continueKey();
                         break;
                     case "4":
@@ -213,9 +208,10 @@ namespace VirtualPet
                         break;
 
                 }
-                userPet.Tick();
-                userPetTwo.Tick();
-                userPetThree.Tick();
+                foreach(var pet in GroupList)
+                {
+                    pet.Tick();
+                }
             }
         }
         public static void IndividualInteraction()
