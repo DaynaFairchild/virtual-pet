@@ -32,6 +32,27 @@ namespace VirtualPet
             petList.Remove(petToRemove);
         }
 
+        // ListPets(false) will just print name and species, without stats. ListPets(true) will print the list with stats.
+        public void ListPets(bool withStats)
+        {
+            int i = 1;
+            foreach (Pet pet in petList)
+            {
+                Console.WriteLine($"{i}. {pet.Name} ({pet.Species})");
+                if (withStats)
+                    Console.WriteLine($"--  Hunger: {pet.Hunger} | Boredom: {pet.Boredom} | Health: {pet.Health}\n");
+                i++;
+            }
+            Console.WriteLine();
+        }
+
+        public Pet ChoosePet()
+        {
+            Console.Write("Please choose a pet (enter a number): ");
+            int petNumber = Convert.ToInt32(Console.ReadLine());
+            Pet chosenPet = petList[petNumber - 1];
+            return chosenPet;
+        }
 
     }
 }

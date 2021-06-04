@@ -9,10 +9,17 @@ namespace VirtualPet.Tests
 {
     public class ShelterTests
     {
-        Shelter testShelter;
+        private Shelter testShelter;
+
         public ShelterTests()
         {
             testShelter = new Shelter();
+        }
+        //Added tests...
+        [Fact]
+        public void Shelter_Constructor_Should_Instantiate_Shelter_Object()
+        {
+            Assert.NotNull(testShelter);
         }
 
         [Fact]
