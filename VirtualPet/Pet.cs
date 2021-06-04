@@ -8,6 +8,7 @@ namespace VirtualPet
     {
         public string Name { get; set; }
         public string Species { get; set; }
+        public int Id { get; set; }
         public int Hunger { get; set; }
         public int Boredom { get; set; }
         public int Health { get; set; }
@@ -19,11 +20,12 @@ namespace VirtualPet
             Health = 30;
             Boredom = 60;
         }
-        public Pet(string name, string species)
+        public Pet(string name, string species, int id)
         {
             Random rand = new Random();
             Name = name;
             Species = species;
+            Id = id;
             Hunger = rand.Next(40,60);
             Health = rand.Next(20,40);
             Boredom = rand.Next(50,70);
