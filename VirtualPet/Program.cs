@@ -2,21 +2,13 @@
 using System.Collections.Generic;
 
 namespace VirtualPet
-{   //Create mathod for showing current pets
-    //fix bug for after new pet is added for referencing list
+{   
     class Program
     {
         public static Shelter petzForDayz = new Shelter();
        
         static void Main(string[] args)
         {
-            //THE CREATION OF THE INITIAL PETS WAS MOVED INTO StartingIntro()
-            //Pet Fluffy = new Pet("Fluffy","Alligator");
-            //Pet Spot = new Pet("Spot", "Zebra");
-            //Pet Brew = new Pet("Brew", "Hippogriff");
-            //petzForDayz.AddPet(Fluffy);
-            //petzForDayz.AddPet(Spot);
-            //petzForDayz.AddPet(Brew);
 
             StartingIntro();
 
@@ -29,7 +21,6 @@ namespace VirtualPet
             Console.ReadKey();
             Console.Clear();
         }
-        // Second continueKey() method can be used to change generic message above to the string passed to it as parameter
         public static void continueKey(string uniqueText)
         {
             Console.WriteLine(uniqueText);
@@ -64,7 +55,7 @@ namespace VirtualPet
                 Console.WriteLine("1. Take in a new pet");
                 Console.WriteLine("2. Adopt a pet to a good home");
                 Console.WriteLine("3. Interact with an individual pet");
-                Console.WriteLine("4. Interact with all pets");
+                Console.WriteLine("4. Choose three pets to interact with: ");
                 Console.WriteLine("5. Quit");
                 string menuChoice = Console.ReadLine();
                 switch (menuChoice)
@@ -79,7 +70,8 @@ namespace VirtualPet
                         IndividualInteraction();
                         break;
                     case "4":
-                    // Need GroupInteraction() method
+                        GroupInteraction();
+                        break;
                     case "5":
                         Console.WriteLine("Thanks for playing!");
                         continueGame = false;
@@ -122,28 +114,110 @@ namespace VirtualPet
             Pet chosenPet = petzForDayz.ChoosePet();
             petzForDayz.RemovePet(chosenPet);
             Console.Clear();
-            Console.WriteLine($"{chosenPet.Name} has found a new home. Great work!\n");
-            continueKey();
+            continueKey($"{chosenPet.Name} has found a new home. Great work!\nPress any key to continue: ");
+
         }
-        //public static void RemovePet(Pet chosenPet)
-        //{
-        //    petzForDayz.petList.Remove(chosenPet);
-        //}
 
-        //public static Pet ChoosePet()
-        //{
-        //    Console.Clear();
-        //    Console.WriteLine("Please choose a pet (type the number):\n\n");
-        //    foreach (Pet pet in petzForDayz.petList)
-        //    {
-        //        Console.WriteLine($"{pet.Id}. {pet.Name} ({pet.Species})\n");
-        //    }
-        //    int petNumber = Convert.ToInt32(Console.ReadLine());
-        //    Pet chosenPet = petzForDayz.petList[petNumber - 1];
-        //    return chosenPet;
-        //}
+        public static void ZeroHealth(Pet tocheck)
+        {
+                Console.Clear();
+                Console.WriteLine($"WOW... {tocheck.Name}'s Health reached 0. The poor {tocheck.Species} has been seized by the Animal Protective League!\n");
+                Console.WriteLine("Please DO NOT mistreat the pets!\n");
+                petzForDayz.RemovePet(tocheck);
+                continueKey();
+        }
 
+        public static void GroupInteraction()
+        {
+            Pet userPet = petzForDayz.ChoosePet();
+            Pet userPetTwo = petzForDayz.ChoosePet();
+            Pet userPetThree = petzForDayz.ChoosePet();
+            List<Pet> GroupList = new List<Pet> { userPet, userPetTwo, userPetThree };
+           
 
+            bool oneIsDead = false;
+            bool twoIsDead = false;
+            bool threeIsDead = false;
+
+            bool keepPlaying = true;
+            while (keepPlaying)
+            {
+                if (!oneIsDead && userPet.Health == 0) 
+                { 
+                    ZeroHealth(userPet);
+                    oneIsDead = true; 
+                }
+                if (!twoIsDead && userPetTwo.Health == 0)
+                {
+                    ZeroHealth(userPetTwo);
+                    twoIsDead = true;
+                }
+                if (!threeIsDead && userPetThree.Health == 0)
+                {
+                    ZeroHealth(userPetThree);
+                    threeIsDead = true;
+                }
+                if (oneIsDead && twoIsDead && threeIsDead)
+                {
+                    break;
+                }
+                
+                Console.Clear();
+                bool withStats = true;
+                int i = 1;
+                foreach (Pet pet in GroupList)
+                {
+                    Console.WriteLine($"{i}. {pet.Name} ({pet.Species})");
+                    if (withStats)
+                        Console.WriteLine($"--  Hunger: {pet.Hunger} | Boredom: {pet.Boredom} | Health: {pet.Health}\n");
+                    i++;
+                }
+                Console.WriteLine();
+                Console.WriteLine($"What would you like to do with the pets?");
+                Console.WriteLine($"1. Feeding time");
+                Console.WriteLine($"2. Play time");
+                Console.WriteLine($"3. Group vet visit");
+                Console.WriteLine("4. Exit");
+
+                string userChoice = Console.ReadLine();
+                switch (userChoice)
+                {
+                    case "1":
+                        Console.Clear();
+                        userPet.Feed();
+                        userPetTwo.Feed();
+                        userPetThree.Feed();
+                        continueKey();
+                        break;
+                    case "2":
+                        Console.Clear();
+                        userPet.Play();
+                        userPetTwo.Play();
+                        userPetThree.Play();
+                        continueKey();
+                        break;
+                    case "3":
+                        Console.Clear();
+                        userPet.SeeDoctor();
+                        userPetTwo.SeeDoctor();
+                        userPetThree.SeeDoctor();
+                        continueKey();
+                        break;
+                    case "4":
+                        Console.WriteLine($"Thanks for caring for the pets! They has enjoyed your company!");
+                        keepPlaying = false;
+                        break;
+                    default:
+                        Console.WriteLine("You must choose from options 1-4.\n");
+                        continueKey("Press any key to make another selection.");
+                        break;
+
+                }
+                userPet.Tick();
+                userPetTwo.Tick();
+                userPetThree.Tick();
+            }
+        }
         public static void IndividualInteraction()
         {
             Pet userPet = petzForDayz.ChoosePet();

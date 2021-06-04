@@ -76,6 +76,7 @@ namespace VirtualPet
 
         public void SeeDoctor()
         {
+            Console.WriteLine($"{Name} is feeling healthy!\n");
             if (Health >= 70)
             {
                 Health = 100;

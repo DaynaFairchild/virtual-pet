@@ -32,7 +32,7 @@ namespace VirtualPet
             petList.Remove(petToRemove);
         }
 
-        // ListPets(false) will just print name and species, without stats. ListPets(true) will print the list with stats.
+       
         public void ListPets(bool withStats)
         {
             int i = 1;
