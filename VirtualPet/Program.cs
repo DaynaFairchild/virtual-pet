@@ -140,14 +140,22 @@ namespace VirtualPet
             while (keepPlaying)
             {
                 int deadCount = 0;
+                List<Pet> deadPets = new List<Pet>(); 
                 foreach(var pet in GroupList)
                 {
                     if(pet.Health == 0)
                     {
                         ZeroHealth(pet);
+                        deadPets.Add(pet);
                         deadCount++;
                     }
+                    
                 }
+                foreach(var dead in deadPets)
+                {
+                    GroupList.Remove(dead);
+                }
+
 
                 if (deadCount == GroupList.Count)
                 {

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VirtualPet.Tests
+namespace VirtualPet
 {
-    class RoboticPetTests
+    class Organic : Pet
     {
+
     }
 }
