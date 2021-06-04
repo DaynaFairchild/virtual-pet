@@ -20,12 +20,11 @@ namespace VirtualPet
             Health = 30;
             Boredom = 60;
         }
-        public Pet(string name, string species, int id)
+        public Pet(string name, string species)
         {
             Random rand = new Random();
             Name = name;
             Species = species;
-            Id = id;
             Hunger = rand.Next(40,60);
             Health = rand.Next(20,40);
             Boredom = rand.Next(50,70);
@@ -66,12 +65,12 @@ namespace VirtualPet
             {
                 Hunger = 0;
                 Health -= 10;
-                Console.WriteLine($"You've overfed {Name} and your poor {Species} isn't feeling so well. (Health has decresed to {Health}.)");
+                Console.WriteLine($"You've overfed {Name} and the poor {Species} isn't feeling so well. (Health has decresed to {Health}.)\n");
             }
             else
             {
                 Hunger -= 40;
-                Console.WriteLine($"You fed {Name}. Yum, yum, yum!");
+                Console.WriteLine($"You fed {Name}. Yum, yum, yum!\n");
             }
         }
 
@@ -109,12 +108,12 @@ namespace VirtualPet
             if (Boredom < 20)
             {
                 Boredom = 0;
-                Console.WriteLine($"{Name} is having OODLES of fun!!");
+                Console.WriteLine($"{Name} is having OODLES of fun!!\n");
             }
             else
             {
                 Boredom -= 20;
-                Console.WriteLine($"Good times! {Name} is enjoying playing with you!");
+                Console.WriteLine($"Good times! {Name} is enjoying playing with you!\n");
             }
         }
 
