@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace VirtualPet
-{   
+{   //adopt pet bug
     class Program
     {
         public static Shelter petzForDayz = new Shelter();
@@ -115,7 +115,8 @@ namespace VirtualPet
             petzForDayz.RemovePet(chosenPet);
             Console.Clear();
             continueKey($"{chosenPet.Name} has found a new home. Great work!\nPress any key to continue: ");
-
+            //Fix the bug for when the user input is null
+            // also maybe a fix for choices beyond the number in the list
         }
 
         public static void ZeroHealth(Pet tocheck)
