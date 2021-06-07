@@ -206,14 +206,14 @@ namespace VirtualPet
                 {
                     Console.WriteLine($"{i}. {pet.Name} ({pet.Species})");
                     if (withStats)
-                        Console.WriteLine($"--  Hunger: {pet.Hunger} | Boredom: {pet.Boredom} | Health: {pet.Health}\n");
+                        pet.PrintStats();
                     i++;
                 }
                 Console.WriteLine();
                 Console.WriteLine($"What would you like to do with the pets?");
-                Console.WriteLine($"1. Feeding time");
+                Console.WriteLine($"1. Feeding/charging time");
                 Console.WriteLine($"2. Play time");
-                Console.WriteLine($"3. Group vet visit");
+                Console.WriteLine($"3. Group vet/mechanic visit");
                 Console.WriteLine("4. Exit");
 
                 string userChoice = Console.ReadLine();

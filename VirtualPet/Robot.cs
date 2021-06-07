@@ -8,6 +8,9 @@ namespace VirtualPet
 {
     public class Robot : Pet
     {
-
+        public override void PrintStats()
+        {
+            Console.WriteLine($"--  Battery Used: {Hunger} | Boredom: {Boredom} | Oil level: {Health}\n");
+        }
     }
 }

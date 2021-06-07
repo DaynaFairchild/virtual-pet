@@ -147,5 +147,11 @@ namespace VirtualPet
                 Health -= 5;
             }
         }
+
+        public virtual void PrintStats ()
+        {
+
+        }
+
     }
 }
