@@ -1,7 +1,9 @@
 ﻿Welcome to Petz For Dayz Pet Shelter:
  
  Upon running, you will see a list of current pets hosted within the shelter.
+ 
  You will be given a set of options to choose from
+ 
       1. Take in a new pet
       2. Adopt a pet to a good home
       3. Interact with an individual pet
