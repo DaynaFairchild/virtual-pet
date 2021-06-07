@@ -30,16 +30,16 @@ namespace VirtualPet
 
         public static void StartingIntro()
         {
-            Pet Fluffy = new Pet("Fluffy", "Alligator");
-            Pet Spot = new Pet("Spot", "Zebra");
-            Pet Brew = new Pet("Brew", "Hippogriff");
+            Organic Fluffy = new Organic("Fluffy", "Alligator");
+            Organic Spot = new Organic("Spot", "Zebra");
+            Robot Brew = new Robot("Brew", "Hippogriff");
             petzForDayz.AddPet(Fluffy);
             petzForDayz.AddPet(Spot);
             petzForDayz.AddPet(Brew);
 
             Console.WriteLine("Hello! Welcome to Petz 4 Dayz Shelter!\n");
             Console.WriteLine("Thank you for volunteering with us today.\n");
-            Console.WriteLine("Below is a list of the (future) pets currently sheltered.\n");
+            Console.WriteLine("Below is a list of the pets currently sheltered.\n");
             petzForDayz.ListPets(true);
             continueKey("Press any key to begin your new friendships!");
         }
@@ -99,6 +99,11 @@ namespace VirtualPet
             else if (petType == "2")
             {
                 NewRoboticPet();
+            }
+            else
+            {
+                continueKey("That is not a valid choice. Please choose 1 or 2.");
+                NewPet();
             }
         }
 
@@ -268,18 +273,18 @@ namespace VirtualPet
                 if (userPet.Health == 0)
                 {
                     Console.Clear();
-                    Console.WriteLine($"WOW... {userPet.Name}'s Health reached 0. The poor {userPet.Species} has been seized by the Animal Protective League!\n");
+                    Console.WriteLine($"WOW... {userPet.Name}'s Health/Oil Level reached 0. The poor {userPet.Species} has been seized by the Animal Protective League!\n");
                     Console.WriteLine("Please DO NOT mistreat the pets!\n");
                     petzForDayz.RemovePet(userPet);
                     continueKey();
                     break;
                 }
                 Console.Clear();
-                Console.WriteLine($"Hunger: {userPet.Hunger} | Boredom: {userPet.Boredom} | Health: {userPet.Health}\n");
+                userPet.PrintStats();
                 Console.WriteLine($"What would you like to do with {userPet.Name}?");
-                Console.WriteLine($"1. Feed {userPet.Name}");
+                Console.WriteLine($"1. Feed/charge {userPet.Name}");
                 Console.WriteLine($"2. Play with {userPet.Name}");
-                Console.WriteLine($"3. Take {userPet.Name} to the vet :-(");
+                Console.WriteLine($"3. Take {userPet.Name} to the vet/mechanic :-(");
                 Console.WriteLine("4. Exit");
 
                 string userChoice = Console.ReadLine();
@@ -290,8 +295,8 @@ namespace VirtualPet
                         userPet.Feed();
                         continueKey();
                         Console.Clear();
-                        Console.WriteLine($"Hunger: {userPet.Hunger} | Boredom: {userPet.Boredom} | Health: {userPet.Health}");
-                        Console.WriteLine($"{userPet.Name}'s Hunger decreased to {userPet.Hunger}.\n");
+                        userPet.PrintStats();
+                        Console.WriteLine($"{userPet.Name}'s Hunger/Battery Used decreased to {userPet.Hunger}.\n");
                         continueKey();
                         break;
                     case "2":
@@ -299,17 +304,17 @@ namespace VirtualPet
                         userPet.Play();
                         continueKey();
                         Console.Clear();
-                        Console.WriteLine($"Hunger: {userPet.Hunger} | Boredom: {userPet.Boredom} | Health: {userPet.Health}\n");
+                        userPet.PrintStats();
                         Console.WriteLine($"You played a game with {userPet.Name}. Hooray!");
-                        Console.WriteLine($"{userPet.Name}'s Boredom decresed to {userPet.Boredom}, Hunger increased to {userPet.Hunger}, and Health increased to {userPet.Health}.\n");
+                        Console.WriteLine($"{userPet.Name}'s Boredom decresed to {userPet.Boredom}, Hunger/Battery Used increased to {userPet.Hunger}, and Health/Oil Level increased to {userPet.Health}.\n");
                         continueKey();
                         break;
                     case "3":
                         Console.Clear();
                         userPet.SeeDoctor();
-                        Console.WriteLine($"Hunger: {userPet.Hunger} | Boredom: {userPet.Boredom} | Health: {userPet.Health}\n");
-                        Console.WriteLine($"You took {userPet.Name} for a checkup at the vet.");
-                        Console.WriteLine($"{userPet.Name}'s Health increased to {userPet.Health}.\n");
+                        userPet.PrintStats();
+                        Console.WriteLine($"You took {userPet.Name} for a checkup at the vet/mechanic.");
+                        Console.WriteLine($"{userPet.Name}'s Health/Oil Level increased to {userPet.Health}.\n");
                         continueKey();
                         break;
                     case "4":

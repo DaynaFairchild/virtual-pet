@@ -40,7 +40,7 @@ namespace VirtualPet
             {
                 Console.WriteLine($"{i}. {pet.Name} ({pet.Species})");
                 if (withStats)
-                    Console.WriteLine($"--  Hunger: {pet.Hunger} | Boredom: {pet.Boredom} | Health: {pet.Health}\n");
+                    pet.PrintStats();
                 i++;
             }
             Console.WriteLine();
