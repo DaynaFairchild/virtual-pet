@@ -90,13 +90,28 @@ namespace VirtualPet
         public static void NewPet()
         {
             Console.Clear();
+            Console.WriteLine("Is the pet 1. organic or 2. robotic?");
+            string petType = Console.ReadLine();
+            if (petType == "1")
+            {
+                NewOrganicPet();
+            }
+            else if (petType == "2")
+            {
+                NewRoboticPet();
+            }
+        }
+
+        public static void NewOrganicPet()
+        {
+            Console.Clear();
             Console.WriteLine("What species is this pet?"); 
             string species = Console.ReadLine();
             
             Console.WriteLine($"What is the name of this {species}?");
             string name = Console.ReadLine();
 
-            Pet newPet = new Pet(name, species);
+            Organic newPet = new Organic(name, species);
             petzForDayz.AddPet(newPet);
 
             Console.Clear();
@@ -106,6 +121,27 @@ namespace VirtualPet
             Console.WriteLine($"You will need to interact with and care for {name} to keep them happy and healthy.\n");
             continueKey();
         }
+
+        public static void NewRoboticPet()
+        {
+            Console.Clear();
+            Console.WriteLine("What robotic species is this pet?");
+            string species = Console.ReadLine();
+
+            Console.WriteLine($"What is the name of this {species}?");
+            string name = Console.ReadLine();
+
+            Robot newPet = new Robot(name, species);
+            petzForDayz.AddPet(newPet);
+
+            Console.Clear();
+            Console.WriteLine($"Your robotic {species}'s name is {name}!\n");
+            Console.WriteLine($"Even a robotic pet, like {name}, needs your love and attention.");
+            Console.WriteLine($"The passage of time (each time you return to the menu) will affect {name}'s stats.");
+            Console.WriteLine($"You will need to interact with and care for {name} to keep them happy and operational.\n");
+            continueKey();
+        }
+
 
         public static void AdoptPet()
         {

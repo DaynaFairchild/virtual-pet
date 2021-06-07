@@ -16,9 +16,9 @@ namespace VirtualPet
 
         public Pet()
         {
-            Hunger = 50;
-            Health = 30;
-            Boredom = 60;
+            Hunger = 50; //battery
+            Health = 30; //calibration 
+            Boredom = 60; 
         }
         public Pet(string name, string species)
         {
